@@ -16,7 +16,7 @@ class ContextMenu(GridLayout):
 
     visible = kp.BooleanProperty(False)
     spacer = kp.ObjectProperty(None)
-    root_parent = kp.ObjectProperty(None)
+    bounding_box_widget = kp.ObjectProperty(None)
 
     def __init__(self, *args, **kwargs):
         super(ContextMenu, self).__init__(*args, **kwargs)
@@ -33,20 +33,21 @@ class ContextMenu(GridLayout):
             item.bind(on_release=on_release)
         self.add_item(item)
 
-    # def hide(self):
-    #     self.visible = False
+    def hide(self):
+        self.visible = False
 
     def show(self, x=None, y=None):
         self.visible = True
         self._add_to_parent()
         self.hide_submenus()
 
-        root_parent = self.root_parent if self.root_parent is not None else self.get_context_menu_root_parent()
+        root_parent = self.bounding_box_widget if self.bounding_box_widget is not None else self.get_context_menu_root_parent()
         if root_parent is None:
             return
 
         point_relative_to_root = root_parent.to_local(*self.to_window(x, y))
 
+        # Choose the best position to open the menu
         if x is not None and y is not None:
             if point_relative_to_root[0] + self.width < root_parent.width:
                 pox_x = x
@@ -71,13 +72,16 @@ class ContextMenu(GridLayout):
         """
         Return the bounding box widget for positioning submenus. By default it's root context menu's parent.
         """
-        if self.root_parent is not None:
-            return self.root_parent
+        if self.bounding_box_widget is not None:
+            return self.bounding_box_widget
         root_context_menu = self._get_root_context_menu()
-        return root_context_menu.root_parent if root_context_menu.root_parent else root_context_menu.parent
+        return root_context_menu.bounding_box_widget if root_context_menu.bounding_box_widget else root_context_menu.parent
 
 
     def _get_root_context_menu(self):
+        """
+        Return the outer most context menu object
+        """
         root = self
         while issubclass(root.parent.__class__, ContextMenuItem) \
                 or issubclass(root.parent.__class__, ContextMenu):
@@ -85,9 +89,7 @@ class ContextMenu(GridLayout):
         return root
 
     def _check_mouse_hover(self, obj):
-        # widget_pos = self.to_window(0, 0)
-        # point = self.to_local(*Window.mouse_pos)
-        collided_widget = self.self_or_submenu_collide_with_point(*Window.mouse_pos)
+        self.self_or_submenu_collide_with_point(*Window.mouse_pos)
 
     def get_height(self):
         height = 0
@@ -125,12 +127,14 @@ class ContextMenu(GridLayout):
             self.orig_parent.add_widget(self)
             self.orig_parent = None
 
+            # Create the timer on the outer most menu object
             if self._get_root_context_menu() == self:
                 self.clock_event = Clock.schedule_interval(partial(self._check_mouse_hover), 0.05)
 
     def self_or_submenu_collide_with_point(self, x, y):
         queue = self.menu_item_widgets
         collide_widget = None
+        # Iterate all siblings and all children
         while len(queue) > 0:
             widget = queue.pop(0)
             submenu = widget.get_submenu()
@@ -155,6 +159,9 @@ class ContextMenu(GridLayout):
 
     @property
     def menu_item_widgets(self):
+        """
+        Return all children that are subclasses of ContextMenuItem
+        """
         return [w for w in self.children if issubclass(w.__class__, ContextMenuItem)]
 
 
@@ -206,6 +213,9 @@ class ContextMenuItem(RelativeLayout):
         return self.parent.get_context_menu_root_parent()
 
     # def on_touch_down(self, click_event):
+    #     return self.collide_point(click_event.x, click_event.y)
+
+    # def on_touch_down(self, click_event):
     #     super(ContextMenuItem, self).on_touch_down(click_event)
     #     return self.collide_point(click_event.x, click_event.y)
 
@@ -250,9 +260,7 @@ class ContextMenuText(ContextMenuItem):
 
 
 class ContextMenuDivider(ContextMenuText):
-    def on_touch_down(self, click_event):
-        return self.collide_point(click_event.x, click_event.y)
-
+    pass
 
 class ContextMenuTextItem(ButtonBehavior, ContextMenuText, ContextMenuHoverableItem):
     pass
