@@ -1,0 +1,33 @@
+<AppMenu>:
+#    on_children: self.height = self.update_height()
+#    on_height: print(self.height)
+#    on_width: self.update_vertical_layout()
+    height: 30
+    size_hint: 1, None
+
+    canvas.before:
+        Color:
+            rgb: 0.15, 0.15, 0.15
+        Rectangle:
+            pos: self.pos
+            size: self.size
+#        Color:
+#            rgba: 0.2, 0.71, 0.9, 0.5
+#        Rectangle:
+#            pos: self.pos
+#            size: self.width, 1
+
+
+<AppMenuTextItem>:
+    label: _label
+
+    size_hint: None, None
+    size: self.label.size
+    Label:
+        padding_x: 10
+        size_hint: None, None
+        text: self.parent.text
+        color: self.parent.color
+        font_size: self.parent.font_size
+        size: self.texture_size[0], 30
+        id: _label

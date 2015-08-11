@@ -1,6 +1,11 @@
 from context_menu import ContextMenu, \
+    AbstractMenu, \
+    AbstractMenuItem, \
+    AbstractMenuItemHoverable, \
     ContextMenuItem, \
     ContextMenuDivider, \
-    ContextMenuHoverableItem, \
     ContextMenuText, \
     ContextMenuTextItem
+
+from app_menu import AppMenu, \
+    AppMenuTextItem

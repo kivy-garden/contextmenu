@@ -71,7 +71,7 @@
         size_hint: None, 1
 
 
-<ContextMenuHoverableItem>:
+<AbstractMenuItemHoverable>:
     on_hovered: self._on_hovered(args[1])
     canvas.before:
         Color:
@@ -102,6 +102,7 @@
     border: (0, 0, 0, 0)
     on_press: self.background_color = 0.10, 0.6, 0.8, 1.0
     on_release: self.background_color = 0.2, 0.71, 0.9, 1.0
+
 
 <ContextMenuToggleButton@ToggleButton>:
     size_hint: None, None
