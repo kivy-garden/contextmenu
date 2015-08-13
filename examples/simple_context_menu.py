@@ -18,7 +18,7 @@ FloatLayout:
 
     Button:
         size_hint: None, None
-        pos_hint: {"center_x": 0.5, "center_y": 0.5 }
+        pos_hint: {"center_x": 0.5, "center_y": 0.8 }
         size: 300, 40
         text: "Click me to show the context menu"
         on_release: context_menu.show(*app.root_window.mouse_pos)
@@ -39,14 +39,14 @@ FloatLayout:
                     text: "SubMenu #6"
                     ContextMenu:
                         ContextMenuTextItem:
-                            text: "Hello, Wordl!"
-                            on_release: app.say_hello(self.text)
-                        ContextMenuTextItem:
                             text: "SubMenu #9"
                         ContextMenuTextItem:
                             text: "SubMenu #10"
                         ContextMenuTextItem:
                             text: "SubMenu #11"
+                        ContextMenuTextItem:
+                            text: "Hello, World!"
+                            on_release: app.say_hello(self.text)
                         ContextMenuTextItem:
                             text: "SubMenu #12"
                 ContextMenuTextItem:
@@ -62,8 +62,8 @@ class MyApp(App):
         return Builder.load_string(kv)
 
     def say_hello(self, text):
-        self.root.ids['context_menu'].hide()
         print(text)
+        self.root.ids['context_menu'].hide()
 
 
 if __name__ == '__main__':

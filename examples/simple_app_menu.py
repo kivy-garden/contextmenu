@@ -10,42 +10,45 @@ kivy.require('1.9.0')
 import kivy.garden.contextmenu
 
 
+
 kv = """
 FloatLayout:
     id: layout
     AppMenu:
+        id: app_menu
         top: root.height
         cancel_handler_widget: layout
+
         AppMenuTextItem:
-            text: "Menu Menu Menu #1"
+            text: "Menu #1"
             ContextMenu:
                 ContextMenuTextItem:
-                    text: "Item #1"
+                    text: "Item #11"
                 ContextMenuTextItem:
-                    text: "Item #2"
-                ContextMenuTextItem:
-                    text: "ItemItemItem #3"
-                ContextMenuTextItem:
-                    text: "Item #4"
-                    ContextMenu:
-                        ContextMenuTextItem:
-                            text: "Item #41"
-                        ContextMenuTextItem:
-                            text: "Hello, World!"
-                            on_release: print(self.text)
-                        ContextMenuTextItem:
-                            text: "Item #43"
-                        ContextMenuTextItem:
-                            text: "Item #44"
-                ContextMenuTextItem:
-                    text: "Item #5"
+                    text: "Item #12"
         AppMenuTextItem:
-            text: "Menu #2"
+            text: "Menu Menu Menu #2"
             ContextMenu:
                 ContextMenuTextItem:
                     text: "Item #21"
                 ContextMenuTextItem:
                     text: "Item #22"
+                ContextMenuTextItem:
+                    text: "ItemItemItem #23"
+                ContextMenuTextItem:
+                    text: "Item #24"
+                    ContextMenu:
+                        ContextMenuTextItem:
+                            text: "Item #241"
+                        ContextMenuTextItem:
+                            text: "Hello, World!"
+                            on_release: app.say_hello(self.text)
+                        ContextMenuTextItem:
+                            text: "Item #243"
+                        ContextMenuTextItem:
+                            text: "Item #244"
+                ContextMenuTextItem:
+                    text: "Item #5"
         AppMenuTextItem:
             text: "Menu Menu #3"
             ContextMenu:
@@ -59,8 +62,13 @@ FloatLayout:
                     text: "SubMenu #34"
         AppMenuTextItem:
             text: "Menu #4"
-"""
 
+    Label:
+        pos: 10, 10
+        text: "Left click anywhere outside the context menu to close it"
+        size_hint: None, None
+        size: self.texture_size
+"""
 
 class MyApp(App):
 
@@ -68,6 +76,9 @@ class MyApp(App):
         self.title = 'Simple app menu example'
         return Builder.load_string(kv)
 
+    def say_hello(self, text):
+        print(text)
+        self.root.ids['app_menu'].close_all()
 
 if __name__ == '__main__':
     MyApp().run()
