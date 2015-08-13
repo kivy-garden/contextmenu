@@ -9,7 +9,7 @@ import kivy.garden.contextmenu
 
 kv = """
 FloatLayout:
-    on_touch_down: context_menu.self_or_submenu_collide_with_point(args[1].x, args[1].y) is None and context_menu.hide()
+    id: layout
     Label:
         pos: 10, self.parent.height - self.height - 10
         text: "Left click anywhere outside the context menu to close it"
@@ -26,6 +26,8 @@ FloatLayout:
     ContextMenu:
         id: context_menu
         visible: False
+        cancel_handler_widget: layout
+
         ContextMenuTextItem:
             text: "SubMenu #2"
         ContextMenuTextItem:

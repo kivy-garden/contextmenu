@@ -27,8 +27,8 @@
 <ContextMenuItem>:
     size_hint: None, None
     submenu_arrow: _submenu_arrow
-    on_children: self._update_arrows()
-    on_parent: self._update_arrows()
+    on_children: self._check_submenu()
+    on_parent: self._check_submenu()
     canvas.before:
         Color:
             rgb: (0.15, 0.15, 0.15)
@@ -63,6 +63,9 @@
     Label:
         pos: 0,0
         id: _label
+        text: self.parent.text
+        color: self.parent.color
+        font_size: self.parent.font_size
         padding: 10, 0
 #        font_size:
         halign: 'left'
