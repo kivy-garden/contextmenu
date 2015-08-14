@@ -10,7 +10,6 @@ kivy.require('1.9.0')
 import kivy.garden.contextmenu
 
 
-
 kv = """
 FloatLayout:
     id: layout
@@ -58,6 +57,7 @@ FloatLayout:
                     text: "SubMenu #32"
                 ContextMenuTextItem:
                     text: "SubMenu #33"
+                ContextMenuDivider:
                 ContextMenuTextItem:
                     text: "SubMenu #34"
         AppMenuTextItem:
