@@ -4,7 +4,7 @@ Collection of classes for easy creating **context** and **application** menus.
 
 ## Context Menu
 
-![Example of context menu](https://raw.githubusercontent.com/kivy-garden/garden.desktopvideoplayer/master/doc/context-menu-01.png)
+![Example of context menu](https://raw.githubusercontent.com/kivy-garden/garden.contextmenu/master/doc/context-menu-01.png)
 
 Context menu is represented by `ContextMenu` widget that wraps all menu items as `ContextMenuTextItem` widgets. Context menus can be nested, each `ContextMenuTextItem` can contain maximum one `ContextMenu` widget.
 
