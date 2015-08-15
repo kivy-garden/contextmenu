@@ -167,15 +167,11 @@ Mixin class that represents basic functionality for all menus. It cannot be used
 
 Implementation of a context menu.
 
-### app_menu.AppMenu
-
-Application menu widget. By default it fills the entire parent's width.
-
 ### context_menu.AbstractMenuItem
 
 Mixin class that represents a single menu item. Needs to be extended to be any useful. It's a base class for all menu items for both context and application menus.
 
-If you want to extend this class you need to override the `content_width` property which tells the parent `ContextMenu` what is expected width of this item. It needs to know this to set it's own width.
+If you want to extend this class you need to override the `content_width` property which tells the parent `ContextMenu` what is the expected width of this item. It needs to know this to set it's own width.
 
 ### context_menu.ContextMenuItem
 
@@ -195,7 +191,7 @@ Menu widget that splits two parts of a context/app menu.
 
 ![Example of ContextMenuDivider without text](https://raw.githubusercontent.com/kivy-garden/garden.contextmenu/master/doc/menu-divider-01.png)
 
-Menu widget that also contains an instance of `Label`.
+It also contains an instance of `Label` which is not visible if you don't set it any text.
 
 ```python
 ContextMenuTextItem:
@@ -211,6 +207,10 @@ ContextMenuTextItem:
 ### context_menu.ContextMenuTextItem
 
 Menu item with text. You'll be most of the time just fine using this class for all your menu items. You can also see it used in [all examples here](https://github.com/kivy-garden/garden.contextmenu/tree/master/examples).  Contains a `Label` widget and copies `text`, `font_size` and `color` properties to it automatically.
+
+### app_menu.AppMenu
+
+Application menu widget. By default it fills the entire parent's width.
 
 ### app_menu.AppMenuTextItem
 
