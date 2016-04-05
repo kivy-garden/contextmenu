@@ -1,4 +1,4 @@
-from context_menu import ContextMenu, \
+from .context_menu import ContextMenu, \
     AbstractMenu, \
     AbstractMenuItem, \
     AbstractMenuItemHoverable, \
@@ -7,5 +7,5 @@ from context_menu import ContextMenu, \
     ContextMenuText, \
     ContextMenuTextItem
 
-from app_menu import AppMenu, \
+from .app_menu import AppMenu, \
     AppMenuTextItem

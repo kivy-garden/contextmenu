@@ -6,7 +6,7 @@ from kivy.lang import Builder
 import kivy.properties as kp
 import os
 
-from context_menu import AbstractMenu, AbstractMenuItem, AbstractMenuItemHoverable
+from .context_menu import AbstractMenu, AbstractMenuItem, AbstractMenuItemHoverable
 
 
 class AppMenu(StackLayout, AbstractMenu):

@@ -22,7 +22,7 @@ class AbstractMenu(object):
         self.add_widget(widget)
 
     def add_text_item(self, text, on_release=None):
-        item = ContextMenuTextItem(text)
+        item = ContextMenuTextItem(text=text)
         if on_release:
             item.bind(on_release=on_release)
         self.add_item(item)
