@@ -150,7 +150,7 @@ class ContextMenu(GridLayout, AbstractMenu):
             It's necessary to keep at least one reference to this context menu. Otherwise when
             removed from parent it might get de-allocated by GC.
             '''
-            if not hasattr(self.parent, '__context_menus'):
+            if not hasattr(self.parent, '_ContextMenu__context_menus'):
                 self.parent.__context_menus = set()
             self.parent.__context_menus.add(self)
 
