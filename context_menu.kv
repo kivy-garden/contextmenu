@@ -6,16 +6,10 @@
     on_visible: self._on_visible(args[1])
     on_parent: self._on_visible(self.visible)
 
-#    canvas.before:
-#        Color:
-#            rgb: 1.0, 0, 0
-#        Rectangle:
-#            pos: self.pos
-#            size: self.size
     Widget:
         id: _spacer
         size_hint: 1, None
-        height: 3
+        height: dp(3)
         canvas.before:
             Color:
                 rgb: 0.2, 0.71, 0.9
@@ -39,11 +33,9 @@
     Widget:
         id: _submenu_arrow
         size_hint: None, None
-        width: 6
-        height: 11
-#        pos: 10, 10
-        pos: self.parent.width - self.width - 5, (self.parent.height - self.height) / 2
-#        on_pos: print(self.pos)
+        width: dp(6)
+        height: dp(11)
+        pos: self.parent.width - self.width - dp(5), (self.parent.height - self.height) / 2
         canvas.before:
             Translate:
                 xy: self.pos
@@ -58,7 +50,7 @@
 <ContextMenuText>:
     label: _label
     width: self.parent.width if self.parent else 0
-    height: 26
+    height: dp(26)
 
     Label:
         pos: 0,0
@@ -66,8 +58,7 @@
         text: self.parent.text
         color: self.parent.color
         font_size: self.parent.font_size
-        padding: 10, 0
-#        font_size:
+        padding: dp(10), 0
         halign: 'left'
         valign: 'middle'
         size: self.texture_size
@@ -85,8 +76,8 @@
 
 
 <ContextMenuDivider>:
-    font_size: '10dp'
-    height: 20 if len(self.label.text) > 0 else 1
+    font_size: '10sp'
+    height: dp(20) if len(self.label.text) > 0 else dp(1)
     canvas.before:
         Color:
             rgb: (0.25, 0.25, 0.25)
@@ -97,8 +88,8 @@
 
 <ContextMenuButton@Button>:
     size_hint: None, None
-    font_size: 12
-    height: 20
+    font_size: '12sp'
+    height: dp(20)
     background_normal: ""
     background_down: ""
     background_color: 0.2, 0.71, 0.9, 1.0
@@ -109,8 +100,8 @@
 
 <ContextMenuToggleButton@ToggleButton>:
     size_hint: None, None
-    font_size: '12px'
-    size: 30, 20
+    font_size: '12sp'
+    size: dp(30), dp(20)
     background_normal: ""
     background_down: ""
     background_color: (0.2, 0.71, 0.9, 1.0) if self.state == 'down' else (0.25, 0.25, 0.25, 1.0)
@@ -120,14 +111,14 @@
 
 
 <ContextMenuSmallLabel@Label>:
-    size: self.texture_size[0], 18
+    size: self.texture_size[0], dp(18)
     size_hint: None, None
-    font_size: '12dp'
+    font_size: '12sp'
 
 
 <ContextMenuTextInput@TextInput>:
     size_hint: None, None
-    height: 22
-    font_size: '12dp'
-    padding: 7, 3
+    height: dp(22)
+    font_size: '12sp'
+    padding: dp(7), dp(3)
     multiline: False
