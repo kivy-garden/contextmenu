@@ -12,12 +12,12 @@ kivy.require('1.9.0')
 import kivy.garden.contextmenu
 
 kv = """
-RelativeLayout:
+FloatLayout:
     canvas.before:
         Color:
             rgb: app.random_color()
         Rectangle:
-            pos: 0, 0
+            pos: self.pos
             size: self.size
 
     Button:
@@ -25,7 +25,7 @@ RelativeLayout:
         pos_hint: {"center_x": 0.5, "center_y": 0.8 }
         size: 300, 40
         text: "Click me to show the context menu"
-        on_release: context_menu.show(*app.root_window.mouse_pos)
+        on_release: app.show_context_menu(context_menu)
 
     ContextMenu:
         id: context_menu
@@ -52,6 +52,10 @@ class MyApp(App):
 
     def random_color(self):
         return random(), random(), random()
+
+    def show_context_menu(self, context_menu):
+        print(self.root_window.mouse_pos)
+        context_menu.show(*self.root_window.mouse_pos)
 
 if __name__ == '__main__':
     MyApp().run()
