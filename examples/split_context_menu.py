@@ -19,16 +19,22 @@ RelativeLayout:
         Rectangle:
             pos: 0, 0
             size: self.size
-    AppMenu:
-        id: menu
-        top: self.parent.height
-        AppMenuTextItem:
-            text: "Menu"
-            ContextMenu:
-                ContextMenuTextItem:
-                    text: "Item #1"
-                ContextMenuTextItem:
-                    text: "Item #2"
+
+    Button:
+        size_hint: None, None
+        pos_hint: {"center_x": 0.5, "center_y": 0.8 }
+        size: 300, 40
+        text: "Click me to show the context menu"
+        on_release: context_menu.show(*app.root_window.mouse_pos)
+
+    ContextMenu:
+        id: context_menu
+        # visible: False
+        ContextMenuTextItem:
+            text: "Item #1"
+        ContextMenuTextItem:
+            text: "Item #2"
+
 """
 
 class MyApp(App):
@@ -39,7 +45,7 @@ class MyApp(App):
         layout = GridLayout(cols=2, rows=2)
         for i in range(0, 4):
             widget = Builder.load_string(kv)
-            widget.ids['menu'].cancel_handler_widget = layout
+            widget.ids['context_menu'].cancel_handler_widget = layout
             layout.add_widget(widget)
 
         return layout

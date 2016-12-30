@@ -9,7 +9,6 @@ kivy.require('1.9.0')
 
 import kivy.garden.contextmenu
 
-
 kv = """
 FloatLayout:
     id: layout
@@ -69,6 +68,7 @@ FloatLayout:
         size_hint: None, None
         size: self.texture_size
 """
+
 
 class MyApp(App):
 
