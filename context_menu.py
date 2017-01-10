@@ -5,7 +5,6 @@ from kivy.uix.behaviors import ButtonBehavior
 from kivy.lang import Builder
 from kivy.clock import Clock
 from functools import partial
-import traceback
 
 import kivy.properties as kp
 import os
@@ -93,11 +92,11 @@ class ContextMenu(GridLayout, AbstractMenu):
         # Choose the best position to open the menu
         if x is not None and y is not None:
             if point_relative_to_root[0] + self.width < root_parent.width:
-                pox_x = x
+                pos_x = x
             else:
-                pox_x = x - self.width
+                pos_x = x - self.width
                 if issubclass(self.parent.__class__, AbstractMenuItem):
-                    pox_x -= self.parent.width
+                    pos_x -= self.parent.width
 
             if point_relative_to_root[1] - self.height < 0:
                 pos_y = y
@@ -106,10 +105,7 @@ class ContextMenu(GridLayout, AbstractMenu):
             else:
                 pos_y = y - self.height
 
-            parent_pos = root_parent.pos
-            pos = (pox_x + parent_pos[0], pos_y + parent_pos[1])
-
-            self.pos = pos
+            self.pos = pos_x, pos_y
 
     def self_or_submenu_collide_with_point(self, x, y):
         queue = self.menu_item_widgets
@@ -253,7 +249,6 @@ class AbstractMenuItemHoverable(object):
     def _on_hovered(self, new_hovered):
         if new_hovered:
             spacer_height = self.parent.spacer.height if self.parent.spacer else 0
-            point = self.right, self.top + spacer_height
             self.show_submenu(self.width, self.height + spacer_height)
         else:
             self.hide_submenu()
