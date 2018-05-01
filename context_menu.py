@@ -10,6 +10,9 @@ import kivy.properties as kp
 import os
 
 
+HIGHLIGHT_COLOR = [0.2, 0.71, 0.9, 1]
+
+
 class AbstractMenu(object):
     cancel_handler_widget = kp.ObjectProperty(None)
     bounding_box_widget = kp.ObjectProperty(None)
@@ -69,6 +72,8 @@ class AbstractMenu(object):
 class ContextMenu(GridLayout, AbstractMenu):
     visible = kp.BooleanProperty(False)
     spacer = kp.ObjectProperty(None)
+    hl_color = kp.ListProperty(HIGHLIGHT_COLOR)
+
 
     def __init__(self, *args, **kwargs):
         super(ContextMenu, self).__init__(*args, **kwargs)

@@ -6,7 +6,7 @@ from kivy.lang import Builder
 import kivy.properties as kp
 import os
 
-from .context_menu import AbstractMenu, AbstractMenuItem, AbstractMenuItemHoverable
+from .context_menu import AbstractMenu, AbstractMenuItem, AbstractMenuItemHoverable, HIGHLIGHT_COLOR
 
 
 class AppMenu(StackLayout, AbstractMenu):
@@ -78,6 +78,7 @@ class AppMenuTextItem(ToggleButton, AbstractMenuItem):
     text = kp.StringProperty('')
     font_size = kp.NumericProperty(14)
     color = kp.ListProperty([1, 1, 1, 1])
+    hl_color = kp.ListProperty(HIGHLIGHT_COLOR)
 
     def on_release(self):
         submenu = self.get_submenu()
