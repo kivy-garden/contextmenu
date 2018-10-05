@@ -12,7 +12,7 @@
         height: dp(3)
         canvas.before:
             Color:
-                rgb: 0.2, 0.71, 0.9
+                rgb: root.hl_color
             Rectangle:
                 pos: self.pos
                 size: self.size
@@ -93,10 +93,10 @@
     height: dp(20)
     background_normal: ""
     background_down: ""
-    background_color: 0.2, 0.71, 0.9, 1.0
+    background_color: HIGHLIGHT_COLOR
     border: (0, 0, 0, 0)
     on_press: self.background_color = 0.10, 0.6, 0.8, 1.0
-    on_release: self.background_color = 0.2, 0.71, 0.9, 1.0
+    on_release: self.background_color = HIGHLIGHT_COLOR
 
 
 <ContextMenuToggleButton@ToggleButton>:
@@ -105,10 +105,10 @@
     size: dp(30), dp(20)
     background_normal: ""
     background_down: ""
-    background_color: (0.2, 0.71, 0.9, 1.0) if self.state == 'down' else (0.25, 0.25, 0.25, 1.0)
+    background_color: HIGHLIGHT_COLOR if self.state == 'down' else (0.25, 0.25, 0.25, 1.0)
     border: (0, 0, 0, 0)
     on_press: self.background_color = 0.10, 0.6, 0.8, 1.0
-    on_release: self.background_color = 0.2, 0.71, 0.9, 1.0
+    on_release: self.background_color = HIGHLIGHT_COLOR
 
 
 <ContextMenuSmallLabel@Label>:
