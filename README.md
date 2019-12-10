@@ -18,7 +18,7 @@ Context menu is represented by `ContextMenu` widget that wraps all menu items as
 import kivy
 from kivy.app import App
 from kivy.lang import Builder
-import kivy.garden.contextmenu
+import kivy_garden.contextmenu
 
 kv = """
 FloatLayout:
@@ -96,7 +96,7 @@ Creating application menus is very similar to context menus. Use `AppMenu` and `
 import kivy
 from kivy.app import App
 from kivy.lang import Builder
-import kivy.garden.contextmenu
+import kivy_garden.contextmenu
 
 kv = """
 FloatLayout:

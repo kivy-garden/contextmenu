@@ -9,7 +9,7 @@ import logging
 kivy.require('1.9.0')
 # Logger.setLevel(logging.DEBUG)
 
-import kivy.garden.contextmenu
+import kivy_garden.contextmenu
 
 kv = """
 RelativeLayout:

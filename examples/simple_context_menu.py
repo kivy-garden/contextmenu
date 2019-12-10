@@ -4,7 +4,7 @@ from kivy.lang import Builder
 
 kivy.require('1.9.0')
 
-import kivy.garden.contextmenu
+import kivy_garden.contextmenu
 
 
 kv = """
