@@ -45,7 +45,7 @@ setup(
         'dev': ['pytest>=3.6', 'wheel', 'pytest-cov', 'pycodestyle'],
         'travis': ['coveralls'],
     },
-    package_data={},
+    package_data={'kivy_garden.contextmenu': ['*.kv']},
     data_files=[],
     entry_points={},
     project_urls={
